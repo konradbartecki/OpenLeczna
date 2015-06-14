@@ -1,0 +1,62 @@
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using OpenLeczna.Model;
+//using System.Runtime;
+//using System.Collections;
+
+//namespace OpenLeczna.App_Start
+//{
+
+//    public class Data
+//    {
+//        public static class Defaults
+//        {
+//            public static class Carriers
+//            {
+//                public static string LeczTrans = "Łęcz-Trans";
+//                public static string PiatekBus = "PiątekBus";
+//            }
+//            public static class Cities
+//            {
+//                public static string Lublin = "Lublin";
+//                public static string Łęczna = "Łęczna";
+//            }
+//        }
+
+//        public List<Station> Stations { get; private set; }
+
+//        public Data()
+//        {
+//            this.Stations = new List<Station>()
+//            {
+//                new Station()
+//                {
+//                    City = "Łęczna",
+//                    Name = "Dworzec (Wamex)",
+//                    Schedules = new List<Schedule>()
+//                    {
+//                        new Schedule()
+//                        {
+//                            CarrierName = Defaults.Carriers.LeczTrans,
+//                            DestinationCity = Defaults.Cities.Lublin,
+//                            WeekdaysDepartures = ScheduleTranslator.GetDeparturesListFromString("4:40ir, 4:50, 5:15, 5:30, 5:45, 5:58ir, 6:04, 6:15, 6:26ir, 6:30, 6:36, 6:45, 6:55, 7:04, 7:15, 7:30ir, 7:42, 7:53, 8:05ir, 8:14, 8:30, 8:34, 8:49, 8:58, 9:15ir, 9:35, 9:50ir, 10:00, 10:10, 10:19, 10:30, 10:40, 10:53, 11:08ir, 11:20, 11:40, 11:50ir, 11:56, 12:18, 12:29, 12:40, 13:00, 13:15ir, 13:25, 13:37, 13:53ir, 14:00, 14:09, 14:20, 14:30, 14:38, 14:51, 15:04ir, 15:10, 15:20, 15:40ir, 15:49, 16:00, 16:15, 16:25, 16:45ir, 16:59, 17:10, 17:24ir, 17:38, 17:52, 18:02, 18:14, 18:30ir, 18:45, 19:06, 19:20, 19:40, 20:10, 20:38, 21:30"),
+//                            SaturdayDepartures = ScheduleTranslator.GetDeparturesListFromString("4:50, 5:15, 5:30, 5:45, 6:04, 6:20, 6:36, 6:50, 7:04, 7:15, 7:30, 7:42, 7:53, 8:05, 8:14, 8:34, 8:49, 9:03, 9:15, 9:40, 9:55, 10:10, 10:19, 10:40, 11:00, 11:20, 11:40, 11:50, 11:56, 12:18, 12:40, 13:00, 13:15, 13:25, 13:45, 14:00, 14:09, 14:20, 14:38, 14:51, 15:04, 15:28, 15:40, 16:00, 16:15, 16:25, 16:45, 16:59, 17:24, 17:38, 18:02, 18:30, 18:45, 19:06, 19:30, 19:50, 20:10, 21:00, 21:30"),
+//                            SundayDepartures = ScheduleTranslator.GetDeparturesListFromString("5:30, 6:04, 6:36, 6:55, 7:15, 7:42, 8:05, 8:49, 9:15, 9:40, 9:55, 10:10, 10:40, 11:00, 11:20, 11:56, 12:29, 13:00 13:25, 13:45, 14:00, 14:20, 14:38, 15:04, 15:28, 16:00, 16:15, 16:45, 16:59, 17:24, 17:38, 18:02, 18:30, 18:45, 19:06, 19:30, 20:10, 20:38, 21:30")
+//                        },
+//                        new Schedule()
+//                        {
+//                            CarrierName = Defaults.Carriers.PiatekBus,
+//                            DestinationCity = Defaults.Cities.Lublin,
+//                            WeekdaysDepartures = ScheduleTranslator.GetDeparturesListFromString("5:05; 5:32; 5:50; 6:18; 6:50; 7:08; 7:29; 7:57; 8:20; 8:33; 8:52; 9:19; 9:35; 9:50; 10:25; 10:35;10: 58; 11: 10; 11: 40; 12: 12; 12: 23; 12: 56; 13: 18; 13: 40; 14: 15; 14: 25; 14: 35; 14: 53; 15: 23; 15: 55; 16: 19; 16: 30; 17: 00;17: 35; 17: 56; 18: 19; 18: 45; 19: 05; 19: 40; 20: 10; 20: 35; 21: 00; 21: 50; 22: 20; 22:40"),
+//                            SaturdayDepartures = ScheduleTranslator.GetDeparturesListFromString("5:50; 6:36; 7:08; 7:57; 8:33; 9:35; 10:25; 10:35; 11:40; 12:23; 12:40; 13:18; 13:45; 14:25;14: 53; 15: 23; 16: 45; 17: 35; 18: 45; 19: 30; 20: 35; 21: 25; 22: 40"),
+//                            SundayDepartures = ScheduleTranslator.GetDeparturesListFromString("5:50; 6:36; 7:14; 7:29; 8:33; 9:13; 9:35; 10:35; 11:50; 12:23; 12:50; 13:18; 13:45; 14:25;14: 53; 15: 23; 16: 30; 17: 35; 18: 25; 19: 10; 20: 35; 21:10")
+//                        }
+//                    }
+//                }
+//            };
+//        }
+//    }
+//}

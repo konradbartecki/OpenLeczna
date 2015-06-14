@@ -11,6 +11,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using OpenLeczna.Model;
 using OpenLeczna.Models;
+using System.Data.Entity;
 
 namespace OpenLeczna.Controllers
 {
@@ -23,12 +24,13 @@ namespace OpenLeczna.Controllers
         {
             return db.Stations;
         }
-
+        
         // GET: api/Stations/5
         [ResponseType(typeof(Station))]
         public async Task<IHttpActionResult> GetStation(int id)
         {
             Station station = await db.Stations.FindAsync(id);
+
             if (station == null)
             {
                 return NotFound();

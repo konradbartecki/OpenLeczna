@@ -1,8 +1,0 @@
-﻿CREATE TABLE [dbo].[GeoPositions]
-(
-	[Id] INT NOT NULL PRIMARY KEY,
-    [X] NVARCHAR(50) NOT NULL,
-	[Y] NVARCHAR(50) NOT NULL, 
-    [StreetName] NVARCHAR(50) NULL,
-
-)

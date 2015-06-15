@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using OpenLeczna.Model;
+using OpenLeczna.DTOs;
 using OpenLeczna.Models;
 
 namespace OpenLeczna.Controllers
@@ -18,17 +20,27 @@ namespace OpenLeczna.Controllers
     {
         private TransportServiceContext db = new TransportServiceContext();
 
+        private static readonly Expression<Func<Carrier, CarrierDTO>> AsCarrierDto =
+            x => new CarrierDTO
+            {
+                Name = x.Name
+            };
+
         // GET: api/Carriers
-        public IQueryable<Carrier> GetCarriers()
+        public IQueryable<CarrierDTO> GetCarriers()
         {
-            return db.Carriers;
+            return db.Carriers.Select(AsCarrierDto);
         }
 
-        // GET: api/Carriers/5
-        [ResponseType(typeof(Carrier))]
-        public async Task<IHttpActionResult> GetCarrier(int id)
+        // GET: api/Carriers/Łęcz-Trans
+        [ResponseType(typeof(CarrierDTO))]
+        public async Task<IHttpActionResult> GetCarrier(string name)
         {
-            Carrier carrier = await db.Carriers.FindAsync(id);
+            CarrierDTO carrier = await db.Carriers
+                .Where(x => x.Name == name)
+                .Select(AsCarrierDto)
+                .FirstOrDefaultAsync();
+
             if (carrier == null)
             {
                 return NotFound();

@@ -4,13 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using OpenLeczna.Model;
+using OpenLeczna.DTOs;
 using OpenLeczna.Models;
+using WebGrease.Css.Extensions;
 
 namespace OpenLeczna.Controllers
 {
@@ -18,17 +20,32 @@ namespace OpenLeczna.Controllers
     {
         private TransportServiceContext db = new TransportServiceContext();
 
-        // GET: api/Cities
-        public IQueryable<City> GetCities()
+        private static readonly Expression<Func<City, CityDTO>> AsCityDto =
+            x => new CityDTO
+                {
+                    Name = x.Name
+                };
+
+        public static List<CityDTO> ConvertCityListToDtos(List<City> cityCollection)
         {
-            return db.Cities;
+            return cityCollection.ConvertAll(x => new CityDTO() {Name = x.Name});
+        } 
+
+        // GET: api/Cities
+        public IQueryable<CityDTO> GetCities()
+        {
+            return db.Cities.Select(AsCityDto);
         }
 
-        // GET: api/Cities/5
-        [ResponseType(typeof(City))]
-        public async Task<IHttpActionResult> GetCity(int id)
+        // GET: api/Cities/Lublin
+        [ResponseType(typeof(CityDTO))]
+        public async Task<IHttpActionResult> GetCity(string name)
         {
-            City city = await db.Cities.FindAsync(id);
+            CityDTO city = await db.Cities
+                .Where(x => x.Name == name)
+                .Select(AsCityDto)
+                .FirstOrDefaultAsync();
+
             if (city == null)
             {
                 return NotFound();

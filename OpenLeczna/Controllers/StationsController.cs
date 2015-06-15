@@ -4,14 +4,15 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using OpenLeczna.Model;
+using AutoMapper;
+using OpenLeczna.DTOs;
 using OpenLeczna.Models;
-using System.Data.Entity;
 
 namespace OpenLeczna.Controllers
 {
@@ -19,25 +20,64 @@ namespace OpenLeczna.Controllers
     {
         private TransportServiceContext db = new TransportServiceContext();
 
+
+        //Todo: api/Stations/Łęczna/Lublin
+
+        // Typed lambda expression for Select() method. 
+        //private static readonly Expression<Func<Station, StationDto>> AsStationDto =
+        //    x => new StationDto
+        //    {
+        //         Name = x.Name,
+        //         City = x.City.Name,
+        //         //GeoPosition = x.GeoPos
+        //    };
+
+  
+
         // GET: api/Stations
-        public IQueryable<Station> GetStations()
+        public IQueryable<StationDto> GetStations()
         {
-            return db.Stations;
+            return db.Stations.AsEnumerable().Select(x => Mapper.Map<StationDto>(x)).AsQueryable();
         }
         
-        // GET: api/Stations/5
-        [ResponseType(typeof(Station))]
-        public async Task<IHttpActionResult> GetStation(int id)
+        // GET: api/Stations/Dworzec (Wamex)
+        [ResponseType(typeof(StationDetailsDto))]
+        public async Task<IHttpActionResult> GetStation(string name)
         {
-            Station station = await db.Stations.FindAsync(id);
+            var station = await db.Stations.Include(x => x.Schedules)
+                .Where(x => x.Name == name)
+                .FirstOrDefaultAsync();
 
-            if (station == null)
+            var newstation = Mapper.Map<StationDetailsDto>(station);
+
+            if (newstation == null)
             {
                 return NotFound();
             }
 
-            return Ok(station);
+            return Ok(newstation);
         }
+
+        //[Route("{name:string/details")]
+        //[ResponseType(typeof(StationDetailsDto))]
+        //public async Task<IHttpActionResult> GetStationDetails(string name)
+        //{
+        //    StationDetailsDto station = await (from s in db.Stations
+        //        where s.Name == name
+        //        select new StationDetailsDto
+        //        {
+        //            Name = s.Name,
+        //            City = s.City.Name,
+        //            //Schedules = SchedulesController.ConvertScheduleListToDtos(s.Schedules)
+        //        }).FirstOrDefaultAsync();
+
+        //    if (station == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(station);
+        //}
 
         //// PUT: api/Stations/5
         //[ResponseType(typeof(void))]

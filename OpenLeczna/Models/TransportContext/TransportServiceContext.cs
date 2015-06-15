@@ -19,12 +19,12 @@ namespace OpenLeczna.Models
         {
         }
 
-        public System.Data.Entity.DbSet<OpenLeczna.Model.Station> Stations { get; set; }
+        public System.Data.Entity.DbSet<OpenLeczna.Models.Station> Stations { get; set; }
 
-        public System.Data.Entity.DbSet<OpenLeczna.Model.Carrier> Carriers { get; set; }
+        public System.Data.Entity.DbSet<OpenLeczna.Models.Carrier> Carriers { get; set; }
 
-        public System.Data.Entity.DbSet<OpenLeczna.Model.City> Cities { get; set; }
+        public System.Data.Entity.DbSet<OpenLeczna.Models.City> Cities { get; set; }
 
-        public System.Data.Entity.DbSet<OpenLeczna.Model.Schedule> Schedules { get; set; }
+        public System.Data.Entity.DbSet<OpenLeczna.Models.Schedule> Schedules { get; set; }
     }
 }

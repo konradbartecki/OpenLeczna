@@ -11,11 +11,11 @@ namespace OpenLeczna.DTOs
         public string Name { get; set; }
         public string City { get; set; }
         //public string GeoPosition { get; set; }
-        public virtual List<ScheduleDTO> Schedules { get; set; }
+        public virtual ICollection<ScheduleDTO> Schedules { get; set; }
     }
 
     public class StationDetailsDto : StationDto
     {
-        public new virtual List<ScheduleDetailsDTO> Schedules { get; set; }
+        public new virtual ICollection<ScheduleDetailsDTO> Schedules { get; set; }
     }
 }

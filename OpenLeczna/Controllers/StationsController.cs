@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -37,7 +38,9 @@ namespace OpenLeczna.Controllers
         // GET: api/Stations
         public IQueryable<StationDto> GetStations()
         {
-            return db.Stations.AsEnumerable().Select(x => Mapper.Map<StationDto>(x)).AsQueryable();
+            var list = db.Stations.AsEnumerable();
+            var newList = Mapper.Map<IEnumerable<StationDto>>(list);
+            return newList.AsQueryable();
         }
         
         // GET: api/Stations/Dworzec (Wamex)

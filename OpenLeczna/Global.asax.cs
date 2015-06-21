@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
@@ -7,6 +9,8 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using OpenLeczna.App_Start;
+using OpenLeczna.Migrations;
+using OpenLeczna.Models;
 
 namespace OpenLeczna
 {
@@ -20,6 +24,7 @@ namespace OpenLeczna
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMappings();
+            new DbMigrator(new Configuration()).Update();
         }
     }
 }

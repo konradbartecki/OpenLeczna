@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+Ôªøusing System.Collections.Generic;
 using OpenLeczna.Models;
 
 namespace OpenLeczna.Migrations
@@ -13,6 +13,7 @@ namespace OpenLeczna.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(OpenLeczna.Models.TransportServiceContext context)
@@ -35,12 +36,12 @@ namespace OpenLeczna.Migrations
                 new Carrier()
                 {
                     Id = 0,
-                    Name = "£Ícz-Trans"
+                    Name = "≈Åƒôcz-Trans"
                 },
                 new Carrier()
                 {
                     Id = 1,
-                    Name = "PiπtekBus"
+                    Name = "PiƒÖtekBus"
                 }
             };
 
@@ -49,7 +50,7 @@ namespace OpenLeczna.Migrations
                 new City()
                 {
                     Id = 0,
-                    Name = "£Íczna"
+                    Name = "≈Åƒôczna"
                 },
                 new City()
                 {
@@ -62,7 +63,7 @@ namespace OpenLeczna.Migrations
             {
                 new GeoPos()
                 {
-                    //Dworzec £Íczna
+                    //Dworzec ≈Åƒôczna
                     Id = 0,
                     Latitude = 51.299388,
                     Longitude = 22.888110
@@ -85,7 +86,7 @@ namespace OpenLeczna.Migrations
                                 Name = "Dworzec (Wamex)",                               
                                 Schedules = new List<Schedule>()
                                     {
-                                    //£Ícz-Trans -> Lublin
+                                    //≈Åƒôcz-Trans -> Lublin
                                     new Schedule()
                                         {
                                             Carrier = CarriersList[0],
@@ -107,7 +108,7 @@ namespace OpenLeczna.Migrations
                                             ApplicableDays = Schedule.ApplicableDaysEnum.Sundays,
                                             Departures = ScheduleTranslator.GetDeparturesListFromString("5:30, 6:04, 6:36, 6:55, 7:15, 7:42, 8:05, 8:49, 9:15, 9:40, 9:55, 10:10, 10:40, 11:00, 11:20, 11:56, 12:29, 13:00, 13:25, 13:45, 14:00, 14:20, 14:38, 15:04, 15:28, 16:00, 16:15, 16:45, 16:59, 17:24, 17:38, 18:02, 18:30, 18:45, 19:06, 19:30, 20:10, 20:38, 21:30")
                                         },
-                                    //PiπtekBus -> Lublin
+                                    //PiƒÖtekBus -> Lublin
                                     new Schedule()
                                         {
                                             Carrier = CarriersList[1],

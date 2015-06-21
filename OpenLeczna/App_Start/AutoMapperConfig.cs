@@ -12,8 +12,10 @@ namespace OpenLeczna.App_Start
     {
         public static void RegisterMappings()
         {
+            //TODO: Fix inconsistent naming
             AutoMapper.Mapper.CreateMap<City, CityDTO>();
             AutoMapper.Mapper.CreateMap<Carrier, CarrierDTO>();
+            AutoMapper.Mapper.CreateMap<GeoPos, GeoPosDto>();
             AutoMapper.Mapper.CreateMap<Departure, DepartureDTO>();
             AutoMapper.Mapper.CreateMap<Schedule, ScheduleDTO>();
             AutoMapper.Mapper.CreateMap<Schedule, ScheduleDetailsDTO>();

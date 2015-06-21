@@ -38,7 +38,7 @@ namespace OpenLeczna.Controllers
         // GET: api/Stations
         public IQueryable<StationDto> GetStations()
         {
-            var list = db.Stations.AsEnumerable();
+            var list = db.Stations.Include(x => x.GeoPosition).AsEnumerable();
             var newList = Mapper.Map<IEnumerable<StationDto>>(list);
             return newList.AsQueryable();
         }
@@ -47,7 +47,9 @@ namespace OpenLeczna.Controllers
         [ResponseType(typeof(StationDetailsDto))]
         public async Task<IHttpActionResult> GetStation(string name)
         {
-            var station = await db.Stations.Include(x => x.Schedules)
+            var station = await db.Stations
+                .Include(x => x.Schedules)
+                .Include(x => x.GeoPosition)
                 .Where(x => x.Name == name)
                 .FirstOrDefaultAsync();
 

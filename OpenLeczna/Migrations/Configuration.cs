@@ -58,14 +58,31 @@ namespace OpenLeczna.Migrations
                 }
             };
 
-            //context.SaveChanges();
+            var GeoPosList = new List<GeoPos>()
+            {
+                new GeoPos()
+                {
+                    //Dworzec £êczna
+                    Id = 0,
+                    Latitude = 51.299388,
+                    Longitude = 22.888110
+                },
+                new GeoPos()
+                {
+                    //Wierzbowa
+                    Id = 1,
+                    Latitude = 51.291481,
+                    Longitude = 22.888590
+                }
+            };
 
             context.Stations.AddOrUpdate(x => x.Name,
                             new Station()
                             {
                                 Id = 0,
                                 City = CitiesList[0],
-                                Name = "Dworzec (Wamex)",
+                                GeoPosition = GeoPosList[0],
+                                Name = "Dworzec (Wamex)",                               
                                 Schedules = new List<Schedule>()
                                     {
                                     //£êcz-Trans -> Lublin
@@ -118,7 +135,8 @@ namespace OpenLeczna.Migrations
                             {
                                 Id = 1,
                                 City = CitiesList[0],
-                                Name = "Wierzbowa"
+                                Name = "Wierzbowa",
+                                GeoPosition = GeoPosList[1]
                             }
                 );
         }

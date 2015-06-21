@@ -17,7 +17,7 @@ namespace OpenLeczna.Models
         public string Name { get; set; }
 
         public virtual City City { get; set; }
-        //public virtual GeoPos GeoPos { get; set; }
+        public virtual GeoPos GeoPosition { get; set; }
         public virtual List<Schedule> Schedules { get; set; }
     }
 }

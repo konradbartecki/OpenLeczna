@@ -10,7 +10,7 @@ namespace OpenLeczna.DTOs
     {
         public string Name { get; set; }
         public string City { get; set; }
-        //public string GeoPosition { get; set; }
+        public virtual GeoPosDto GeoPosition { get; set; }
         public virtual ICollection<ScheduleDTO> Schedules { get; set; }
     }
 

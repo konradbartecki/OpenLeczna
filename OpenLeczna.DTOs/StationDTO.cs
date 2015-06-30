@@ -12,6 +12,11 @@ namespace OpenLeczna.DTOs
         public string City { get; set; }
         public virtual GeoPosDto GeoPosition { get; set; }
         public virtual ICollection<ScheduleDTO> Schedules { get; set; }
+        public override string ToString()
+        {
+            //for example: Dworzec (Wamex), Łęczna
+            return Name + ", " + City;
+        }
     }
 
     public class StationDetailsDto : StationDto

@@ -24,7 +24,7 @@ namespace OpenLeczna
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutoMapperConfig.RegisterMappings();
-            new DbMigrator(new Configuration()).Update();
+            //new DbMigrator(new Configuration()).Update();
         }
     }
 }

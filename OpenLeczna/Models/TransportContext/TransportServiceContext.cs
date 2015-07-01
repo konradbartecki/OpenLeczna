@@ -140,8 +140,29 @@ namespace OpenLeczna.Models
                                     Id = 1,
                                     City = CitiesList[0],
                                     Name = "Wierzbowa",
-                                    GeoPosition = GeoPosList[1]
-                                }                                
+                                    //GeoPosition = GeoPosList[1]
+                                },
+                                new Station()
+                                {
+                                    Id = 2,
+                                    City = CitiesList[0],
+                                    Name = "Stadion",
+                                    //GeoPosition = GeoPosList[1]
+                                },
+                                new Station()
+                                {
+                                    Id = 3,
+                                    City = CitiesList[1],
+                                    Name = "Dworzec główny",
+                                    //GeoPosition = GeoPosList[1]
+                                },
+                                new Station()
+                                {
+                                    Id = 4,
+                                    City = CitiesList[1],
+                                    Name = "Turystyczna",
+                                    //GeoPosition = GeoPosList[1]
+                                }
                     );
                 context.SaveChanges();
             }

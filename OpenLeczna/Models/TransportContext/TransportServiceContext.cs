@@ -153,7 +153,7 @@ namespace OpenLeczna.Models
                                 {
                                     Id = 3,
                                     City = CitiesList[1],
-                                    Name = "Dworzec główny",
+                                    Name = "Dworzec PKS",
                                     //GeoPosition = GeoPosList[1]
                                 },
                                 new Station()

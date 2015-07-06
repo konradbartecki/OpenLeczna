@@ -45,12 +45,13 @@ namespace OpenLeczna.Controllers
         
         // GET: api/Stations/Dworzec (Wamex)
         [ResponseType(typeof(StationDetailsDto))]
-        public async Task<IHttpActionResult> GetStation(string name)
+        public async Task<IHttpActionResult> GetStation(string name, string city)
         {
             var station = await db.Stations
                 .Include(x => x.Schedules)
                 .Include(x => x.GeoPosition)
-                .Where(x => x.Name == name)
+                .Include(x => x.City)
+                .Where(x => x.Name == name && x.City.Name == city)
                 .FirstOrDefaultAsync();
 
             var newstation = Mapper.Map<StationDetailsDto>(station);

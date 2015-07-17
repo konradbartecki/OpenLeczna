@@ -140,7 +140,36 @@ namespace OpenLeczna.Models
                                     Id = 1,
                                     City = CitiesList[0],
                                     Name = "Wierzbowa",
-                                    //GeoPosition = GeoPosList[1]
+                                    GeoPosition = GeoPosList[1],
+                                    Schedules = new List<Schedule>()
+                                    {
+                                        //Piatek-bus -> Lublin
+                                        new Schedule()
+                                        {
+                                            //Piątek
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[1],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Weekdays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("4:55; 5:22; 5:40; 6:08; 6:40; 6:58; 7:19; 7:47; 8:10; 8:23; 8:42; 9:09; 9:25; 9:40; 10:15;10:25; 10:48; 11:00; 11:30; 12:02; 12:13; 12:46; 13:08; 13:30; 14:05; 14:15; 14:25; 14:43; 15:13; 15:45; 16:09; 16:20;16:50; 17:25; 17:46; 18:09; 18:35; 18:55; 19:30; 20:00; 20:25; 20:50; 21:40; 22:10; 22:30")
+                                        },
+                                        new Schedule()
+                                        {
+                                            //Piątek
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[1],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Saturdays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("5:40; 6:26; 6:58; 7:47; 8:23; 9:25; 10:15; 10:25; 11:30; 12:13; 12:30; 13:08; 13:35;14:15; 14:43; 15:13; 16:35; 17:25; 18:35; 19:20; 20:25; 21:15; 22:30")
+                                        },
+                                        new Schedule()
+                                        {
+                                            //Piątek
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[1],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Sundays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("5:40; 6:26; 7:04; 7:19; 8:23; 9:03; 9:25; 10:25; 11:40; 12:13; 12:40; 13:08; 13:35; 14:15;14:43; 15:13; 16:20; 17:25; 18:15; 19:00; 20:25; 21:00")
+                                        }          
+                                        //TODO: Add Łęcz-Trans -> Lublin                                                                     
+                                    }
                                 },
                                 new Station()
                                 {

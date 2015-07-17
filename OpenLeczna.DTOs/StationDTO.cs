@@ -15,7 +15,12 @@ namespace OpenLeczna.DTOs
         public override string ToString()
         {
             //for example: Dworzec (Wamex), Łęczna
+            //for example: "" - null
+            if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(City))
+                return "";
+
             return Name + ", " + City;
+           
         }
     }
 

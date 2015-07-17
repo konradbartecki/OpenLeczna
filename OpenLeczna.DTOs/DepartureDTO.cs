@@ -10,6 +10,11 @@ namespace OpenLeczna.DTOs
     {
         public string Time { get; set; }
         public bool IsBetterBusAvailable { get; set; }
+
+        public override string ToString()
+        {
+            return Time;
+        }
     }
 
     public class SpecialDepartureDTO : DepartureDTO

@@ -177,6 +177,9 @@ namespace OpenLeczna.Models
                                     City = CitiesList[0],
                                     Name = "Stadion",
                                     //GeoPosition = GeoPosList[1]
+                                    Schedules = new List<Schedule>()
+                                    {
+                                    }
                                 },
                                 new Station()
                                 {
@@ -184,6 +187,31 @@ namespace OpenLeczna.Models
                                     City = CitiesList[1],
                                     Name = "Dworzec PKS",
                                     //GeoPosition = GeoPosList[1]
+                                    Schedules = new List<Schedule>()
+                                    {
+                                        //Piątek-Bus -> Łęczna
+                                        new Schedule()
+                                        {
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[0],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Weekdays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("5:44; 6:10; 6:36; 7:20; 7:40; 7:50; 8:21; 8:40; 9:04; 9:20; 9:40; 9:55; 10:07; 10:37; 11:05; 11:28; 11:44; 12:05; 12:27;12:55; 13:20; 13:30; 14:00; 14:27; 14:53; 15:16; 15:35; 15:54; 16:13; 16:40; 17:01; 17:23; 17:50; 18:10; 18:41; 19:17;19:30; 20:00; 20:45; 21:05; 21:20; 21:40; 22:30; 23:00; 23:30")
+                                        },
+                                        new Schedule()
+                                        {
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[0],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Saturdays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("6:36; 7:20; 8:08; 8:40; 9:20; 10:25; 11:28; 11:44; 12:27; 12:55; 13:20; 14:00; 14:27; 15:16; 15:35; 16:13; 17:23; 18:10;19:20; 20:05; 21:40; 22:50; 23:30")
+                                        },
+                                        new Schedule()
+                                        {
+                                            Carrier = CarriersList[1],
+                                            DestinationCity = CitiesList[0],
+                                            ApplicableDays = Schedule.ApplicableDaysEnum.Sundays,
+                                            Departures = ScheduleTranslator.GetDeparturesListFromString("6:36; 7:20; 8:08; 8:40; 9:20; 10:07; 10:25; 11:28; 12:27; 12:55; 13:20; 14:00; 14:27; 15:16; 15:35; 16:13; 17:23; 18:10;19:35; 20:00; 21:30; 22:00")
+                                        }
+                                    }
                                 },
                                 new Station()
                                 {
